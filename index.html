@@ -240,27 +240,93 @@
         .tooth-btn.has-gem {
             fill: #ffffff !important;
         }
+        
+        /* Retro Navbar Redesign */
+        .retro-logo {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-weight: 800;
+            color: #bb000f;
+            text-shadow: 2px 2px 0px #F7A6B8, 4px 4px 0px #111111;
+            letter-spacing: -0.03em;
+        }
+
+        .nav-sticker-link {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-weight: 700;
+            font-size: 14px;
+            color: #1e1b17;
+            background-color: #ffffff;
+            border: 2px solid #111111;
+            border-radius: 9999px;
+            padding: 6px 16px;
+            box-shadow: 2px 2px 0px 0px #111111;
+            transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: inline-block;
+        }
+
+        .nav-sticker-link:hover {
+            transform: translateY(-2px) rotate(-1deg);
+            box-shadow: 4px 4px 0px 0px #F7A6B8;
+            background-color: #fff8f2;
+            border-color: #bb000f;
+            color: #bb000f;
+        }
+
+        .nav-sticker-link.active-nav-link {
+            background-color: #bb000f;
+            color: #ffffff;
+            box-shadow: 3px 3px 0px 0px #111111;
+            transform: rotate(1deg);
+        }
+
+        .nav-sticker-link.active-nav-link:hover {
+            background-color: #e80e19;
+            color: #ffffff;
+            box-shadow: 4px 4px 0px 0px #111111;
+        }
+
+        /* Checkerboard Border Pattern */
+        .checker-border {
+            background-image: linear-gradient(45deg, #bb000f 25%, transparent 25%), 
+                              linear-gradient(-45deg, #bb000f 25%, transparent 25%), 
+                              linear-gradient(45deg, transparent 75%, #bb000f 75%), 
+                              linear-gradient(-45deg, transparent 75%, #bb000f 75%);
+            background-size: 12px 12px;
+            background-position: 0 0, 0 6px, 6px -6px, -6px 0px;
+            background-color: #fff8f2;
+            height: 6px;
+            width: 100%;
+        }
     </style>
 </head>
 <body class="text-on-background font-body-md antialiased selection:bg-secondary-container selection:text-on-background">
-<!-- TopNavBar -->
-<nav class="sticky top-0 z-50 flex justify-between items-center px-gutter py-4 bg-surface dark:bg-surface-dim w-full border-b-[3px] border-[#111111] shadow-[4px_4px_0px_0px_#F7A6B8]">
-<div id="logo-brand" class="font-display-lg text-display-lg md:text-display-lg text-primary dark:text-primary-container tracking-tight">
+<!-- TopNavBar Container -->
+<div class="sticky top-0 z-50 w-full flex flex-col">
+    <nav class="flex justify-between items-center px-gutter py-4 bg-surface dark:bg-surface-dim w-full border-b-[3px] border-[#111111] shadow-[0px_4px_0px_0px_rgba(17,17,17,0.05)]">
+        <div id="logo-brand" class="retro-logo text-3xl md:text-4xl tracking-tight transition-transform hover:scale-105 duration-200 cursor-pointer">
             SacroGems
         </div>
-<!-- Desktop Nav -->
-<div class="hidden md:flex space-x-6">
-<a id="nav-link-inicio" class="text-primary dark:text-tertiary-container font-bold border-b-2 border-primary hover:translate-x-[2px] hover:translate-y-[2px] transition-all duration-200" href="#inicio">Inicio</a>
-<a id="nav-link-servicios" class="text-on-surface dark:text-on-surface-variant font-label-lg hover:translate-x-[2px] hover:translate-y-[2px] transition-all duration-200" href="#servicios">Servicios</a>
-<a id="nav-link-galeria" class="text-on-surface dark:text-on-surface-variant font-label-lg hover:translate-x-[2px] hover:translate-y-[2px] transition-all duration-200" href="#galeria">Galería</a>
-<a id="nav-link-cuidados" class="text-on-surface dark:text-on-surface-variant font-label-lg hover:translate-x-[2px] hover:translate-y-[2px] transition-all duration-200" href="#cuidados">Cuidados</a>
+        <!-- Desktop Nav -->
+        <div class="hidden md:flex space-x-4 items-center" id="desktop-nav-links">
+            <a id="nav-link-inicio" class="nav-sticker-link active-nav-link" href="#inicio">Inicio</a>
+            <a id="nav-link-servicios" class="nav-sticker-link" href="#servicios">Servicios</a>
+            <a id="nav-link-galeria" class="nav-sticker-link" href="#galeria">Galería</a>
+            <a id="nav-link-cuidados" class="nav-sticker-link" href="#cuidados">Cuidados</a>
+        </div>
+        <div class="flex items-center gap-4">
+            <a id="nav-cta-btn" class="sticker-btn-primary px-6 py-2.5 text-label-lg hidden md:inline-flex items-center gap-2" href="#reservar">
+                <span class="material-symbols-outlined text-lg">calendar_month</span>
+                Agenda tu cita
+            </a>
+            <!-- Mobile Menu Icon -->
+            <button id="mobile-menu-btn" class="md:hidden w-12 h-12 bg-white border-[3px] border-[#111111] shadow-[3px_3px_0px_0px_#F7A6B8] rounded-full flex items-center justify-center hover:bg-secondary-fixed active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all">
+                <span class="material-symbols-outlined text-2xl text-[#111111] font-bold">menu</span>
+            </button>
+        </div>
+    </nav>
+    <!-- Retro Checkerboard Strip -->
+    <div class="checker-border border-b-[3px] border-[#111111]"></div>
 </div>
-<a id="nav-cta-btn" class="sticker-btn-primary px-6 py-2 text-label-lg hidden md:inline-block" href="#reservar">Agenda tu cita</a>
-<!-- Mobile Menu Icon -->
-<button id="mobile-menu-btn" class="md:hidden text-primary">
-<span class="material-symbols-outlined text-3xl">menu</span>
-</button>
-</nav>
 <main>
 <!-- Hero Section -->
 <section class="px-gutter py-margin max-w-container-max mx-auto flex flex-col md:flex-row items-center justify-between gap-12 relative overflow-hidden min-h-[80vh]" id="inicio">
@@ -907,18 +973,44 @@
         if (cuidadosLink) {
             const simuladorLink = document.createElement('a');
             simuladorLink.id = 'nav-link-simulador';
-            simuladorLink.className = 'text-on-surface dark:text-on-surface-variant font-label-lg hover:translate-x-[2px] hover:translate-y-[2px] transition-all duration-200';
+            simuladorLink.className = 'nav-sticker-link';
             simuladorLink.href = '#simulador';
             simuladorLink.textContent = 'Simulador';
             cuidadosLink.after(simuladorLink);
             
             const faqLink = document.createElement('a');
             faqLink.id = 'nav-link-faq';
-            faqLink.className = 'text-on-surface dark:text-on-surface-variant font-label-lg hover:translate-x-[2px] hover:translate-y-[2px] transition-all duration-200';
+            faqLink.className = 'nav-sticker-link';
             faqLink.href = '#faq';
             faqLink.textContent = 'Preguntas';
             simuladorLink.after(faqLink);
         }
+    }
+
+    // Highlight active nav links on load/scroll/hash change
+    function highlightNav() {
+        const currentHash = window.location.hash || '#inicio';
+        document.querySelectorAll('.nav-sticker-link').forEach(link => {
+            if (link.getAttribute('href') === currentHash) {
+                link.classList.add('active-nav-link');
+            } else {
+                link.classList.remove('active-nav-link');
+            }
+        });
+    }
+    window.addEventListener('hashchange', highlightNav);
+    window.addEventListener('load', highlightNav);
+    
+    // Add click event delegation for nav sticker link active styling
+    const desktopNavLinks = document.getElementById('desktop-nav-links');
+    if (desktopNavLinks) {
+        desktopNavLinks.addEventListener('click', (e) => {
+            const link = e.target.closest('.nav-sticker-link');
+            if (link) {
+                document.querySelectorAll('.nav-sticker-link').forEach(l => l.classList.remove('active-nav-link'));
+                link.classList.add('active-nav-link');
+            }
+        });
     }
 
     mobileMenuBtn.addEventListener('click', () => {
