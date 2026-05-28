@@ -520,7 +520,7 @@
                 
                 <!-- IG Handle in red -->
                 <div class="text-right mt-6">
-                    <span class="font-display-lg text-xl md:text-2xl text-primary tracking-widest uppercase hover:scale-105 transition-transform duration-200 block">@SACROGEMS</span>
+                    <a href="https://www.instagram.com/sacrogems/" target="_blank" rel="noopener noreferrer" class="font-display-lg text-xl md:text-2xl text-primary tracking-widest uppercase hover:scale-105 transition-transform duration-200 block">@SACROGEMS</a>
                 </div>
             </div>
         </div>
@@ -894,7 +894,7 @@
 <p class="font-body-lg text-body-lg text-on-surface-variant mb-8 max-w-2xl mx-auto">
                     Agenda tu cita hoy mismo y dale un toque único y retro a tu sonrisa con nuestras gemas dentales exclusivas.
                 </p>
-<a id="whatsapp-booking-btn" class="sticker-btn-primary px-8 py-4 text-headline-sm inline-flex items-center gap-3" href="#">
+<a id="whatsapp-booking-btn" class="sticker-btn-primary px-8 py-4 text-headline-sm inline-flex items-center gap-3" href="https://wa.me/34640801249?text=%C2%A1Hola%20SacroGems!%20Me%20gustar%C3%ADa%20reservar%20una%20cita%20para%20ponerme%20una%20gema%20dental.%20%C2%BFQu%C3%A9%20turnos%20tienen%20disponibles%3F" target="_blank" rel="noopener noreferrer">
 <span class="material-symbols-outlined">chat</span>
                     Reservar por WhatsApp
                 </a>
@@ -933,7 +933,7 @@
             </div>
             
             <div class="mt-8 flex flex-col gap-3">
-                <a id="lightbox-booking-btn" href="#reservar" class="sticker-btn-primary py-3 px-4 text-center text-sm font-bold flex items-center justify-center gap-2">
+                <a id="lightbox-booking-btn" href="#reservar" target="_blank" rel="noopener noreferrer" class="sticker-btn-primary py-3 px-4 text-center text-sm font-bold flex items-center justify-center gap-2">
                     <span class="material-symbols-outlined text-lg">chat</span>
                     Reservar
                 </a>
@@ -949,9 +949,9 @@
             SacroGems
         </div>
 <div class="flex space-x-6">
-<a id="footer-link-instagram" class="text-on-surface-variant dark:text-on-secondary-fixed-variant font-label-lg hover:text-primary dark:hover:text-tertiary transition-colors cursor-pointer" href="#">Instagram</a>
-<a id="footer-link-tiktok" class="text-on-surface-variant dark:text-on-secondary-fixed-variant font-label-lg hover:text-primary dark:hover:text-tertiary transition-colors cursor-pointer" href="#">TikTok</a>
-<a id="footer-link-whatsapp" class="text-on-surface-variant dark:text-on-secondary-fixed-variant font-label-lg hover:text-primary dark:hover:text-tertiary transition-colors cursor-pointer" href="#">WhatsApp</a>
+<a id="footer-link-instagram" class="text-on-surface-variant dark:text-on-secondary-fixed-variant font-label-lg hover:text-primary dark:hover:text-tertiary transition-colors cursor-pointer" href="https://www.instagram.com/sacrogems/" target="_blank" rel="noopener noreferrer">Instagram</a>
+<a id="footer-link-tiktok" class="text-on-surface-variant dark:text-on-secondary-fixed-variant font-label-lg hover:text-primary dark:hover:text-tertiary transition-colors cursor-pointer" href="https://www.tiktok.com/@sacrogems" target="_blank" rel="noopener noreferrer">TikTok</a>
+<a id="footer-link-whatsapp" class="text-on-surface-variant dark:text-on-secondary-fixed-variant font-label-lg hover:text-primary dark:hover:text-tertiary transition-colors cursor-pointer" href="https://wa.me/34640801249?text=%C2%A1Hola%20SacroGems!%20Me%20gustar%C3%ADa%20consultar%20por%20sus%20servicios%20de%20gemas%20dentales." target="_blank" rel="noopener noreferrer">WhatsApp</a>
 </div>
 <div class="font-body-md text-body-md text-on-surface-variant dark:text-on-secondary-fixed-variant">
             Dental Gems Studio. All rights reserved.
@@ -1279,7 +1279,9 @@
 
         // Custom booking link for WhatsApp
         const waMsg = `¡Hola SacroGems! Estuve explorando su galería y me encantó el diseño de gema dental "${imgData.title}". Me gustaría agendar una cita para ponérmela. ¿Qué turnos tienen disponibles?`;
-        lightboxBookingBtn.href = `https://wa.me/5491122334455?text=${encodeURIComponent(waMsg)}`;
+        lightboxBookingBtn.href = `https://wa.me/34640801249?text=${encodeURIComponent(waMsg)}`;
+        lightboxBookingBtn.target = "_blank";
+        lightboxBookingBtn.rel = "noopener noreferrer";
     }
 
     function applyTiltToCard(card) {
@@ -1524,9 +1526,19 @@
 
     function updateSummaryAndCTA() {
         const keys = Object.keys(simulatorState);
+        const mainWaBtn = document.getElementById('whatsapp-booking-btn');
+        const defaultWaUrl = "https://wa.me/34640801249?text=%C2%A1Hola%20SacroGems!%20Me%20gustar%C3%ADa%20reservar%20una%20cita%20para%20ponerme%20una%20gema%20dental.%20%C2%BFQu%C3%A9%20turnos%20tienen%20disponibles%3F";
+        
         if (keys.length === 0) {
             designSummary.textContent = 'Ninguna gema aplicada. ¡Haz clic en un diente para comenzar!';
             simBookingBtn.href = '#reservar';
+            simBookingBtn.removeAttribute('target');
+            simBookingBtn.removeAttribute('rel');
+            if (mainWaBtn) {
+                mainWaBtn.href = defaultWaUrl;
+                mainWaBtn.setAttribute('target', '_blank');
+                mainWaBtn.setAttribute('rel', 'noopener noreferrer');
+            }
             return;
         }
 
@@ -1546,12 +1558,15 @@
         const designMsg = descriptions.map(d => `✨ ${d}`).join('\n');
         const encodedText = encodeURIComponent(baseMsg + designMsg + '\n\n¿Tienen citas disponibles?');
         
-        const waLink = `https://wa.me/5491122334455?text=${encodedText}`;
+        const waLink = `https://wa.me/34640801249?text=${encodedText}`;
         simBookingBtn.href = waLink;
+        simBookingBtn.setAttribute('target', '_blank');
+        simBookingBtn.setAttribute('rel', 'noopener noreferrer');
         
-        const mainWaBtn = document.getElementById('whatsapp-booking-btn');
         if (mainWaBtn) {
             mainWaBtn.href = waLink;
+            mainWaBtn.setAttribute('target', '_blank');
+            mainWaBtn.setAttribute('rel', 'noopener noreferrer');
         }
     }
 
